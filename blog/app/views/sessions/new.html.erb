@@ -1,0 +1,26 @@
+<% cache 'login_form' do %>
+  <div class="container">
+    <div style="width: 450px; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+			<% flash.each do |key, value| %>
+			 <div class="alert alert-<%= key %>"><%= value %></div>
+			<% end %>
+			<div class="modal-header" align="center" style="margin-top: 10px; padding-bottom: 40px;">
+				<img class="img" id="img_logo" src="/assets/bewakoof_logo.png">
+			</div>
+			<%= form_tag sessions_path, class: '', id: 'login-form1' do %>
+				<div class="modal-body">
+					<%= text_field_tag :username, '',placeholder:"Username", class:"form-control" %><br>
+					<%= password_field_tag :password, '',placeholder: "Password", class:"form-control" %>
+				</div>
+				<div class="modal-footer">
+					<div>
+						<%= submit_tag "Login", class:"btn btn-primary btn-lg btn-block" %>
+					</div>
+					<div>
+						<a href="/sign_up">Register</a>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% end %>

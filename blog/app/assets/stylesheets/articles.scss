@@ -1,0 +1,176 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+header {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0,.21);
+
+  .nav > li > a {
+    color: #222 !important; 
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    margin-right: 20px
+  }
+  a:hover {
+    color: #222;
+  } 
+}
+
+.panel-title {
+  h2 {
+    font-size: 40px;
+    margin-bottom:25px;
+    text-align: center;
+  }
+}
+
+.panel {
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  .image-selector {
+    button { display: inline-block; }
+    p { display: inline-block; }
+  }
+
+}
+
+.modal-dialog{
+  width: 400px !important;
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity = 50);
+  opacity: .8;
+}
+
+.modal-content {
+  background-color: #ececec;
+  border: 1px solid #bdc3c7;
+  border-radius: 0px;
+  outline: 0;
+  
+  img {
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+}
+
+.modal-header {
+  min-height: 16.43px;
+  padding: 15px 15px 15px 15px;
+  border-bottom: 0px;
+}
+
+.modal-body {
+  position: relative;
+  padding: 5px 15px 5px 15px;
+}
+
+.modal-footer {
+  padding: 15px 15px 15px 15px;
+  text-align: left;
+  border-top: 0px;
+}
+
+.btn-link {
+  padding: 5px 10px 0px 0px;
+  color: #95a5a6;
+  &:hover, &:focus {
+    color: #2c3e50;
+    text-decoration: none;
+  }
+}
+
+footer {
+    background-color: #fff;
+    padding-top: 20px;
+
+    a, a:hover {
+        text-decoration: none;
+        color: #2980B9;
+    }
+
+    .footnav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+        margin-bottom: 25px;
+ 
+        li {
+            font-weight: bold;
+            font-size: 16px;
+            color: #2980B9;
+		    display: inline;
+    		list-style-type: none;
+		    margin: 0 8px;
+		    padding: 0;
+		}
+    }
+
+    .footurl {
+      margin-bottom: 16px;
+      text-align: center;
+      a {
+        color: #222 !important;
+        font-size: 35px;
+      }
+    }
+}
+
+.bottom-title {
+    background: #2980B9;
+    padding: 10px 15px;
+    color: #ffffff !important;
+    font-size: 21px !important;
+    font-weight: 500;
+    box-shadow: 0px 2px 5px #2980B9;
+    text-align: center;
+    width: 200px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+}
+
+
+.content-post {
+   width: 33.33%;
+   float: left;
+   .content-body {
+        height: 545px;
+	    box-shadow: 0px 1px 4px rgba(0, 0, 0,.21);
+    	margin: 10px;
+	    padding: 0px !important;
+    	background: #FaFaFa;
+   }
+   .content {
+      padding: 0 10px;
+      color: #222;
+   }
+   h2 {
+       height: 52px;
+       margin-top: 10px;
+       margin-bottom: 20px;
+       padding: 0px 10px;
+   }
+   a, a:hover {
+        text-decoration: none;
+        img {
+            width: 100%;
+		    padding: 0px;
+		    margin: 0px;
+		    border-bottom: 10px solid #FaFaFa;
+		    transition: 200ms;
+        }
+   }
+}
+
+
+

@@ -1,0 +1,29 @@
+<div class="container">
+  <div style="width: 450px; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+		<div class="modal-header" align="center" style="margin-top: 10px; padding-bottom: 40px;">
+			<img class="img" id="img_logo" src="/assets/bewakoof_logo.png">
+		</div>
+		<%= form_tag users_path, id: 'register-form1' do %>
+			<div class="modal-body">
+				<%= text_field_tag :name, '', class: "form-control", placeholder: "Name" %><br>
+				<%= text_field_tag :username, '', class: "form-control", placeholder: "Username" %><br>
+				<%= text_field_tag :email, '', class: "form-control", placeholder: "Email" %><br>
+				<%= text_field_tag :password, '', class: "form-control", placeholder: "Password" %><br>
+				<%= hidden_field_tag :subscriber, false  %> 
+				<%= check_box_tag :subscriber, true, true %> Subscribe to updates
+				<% style= "display: none; margin-top: 20px;"
+					 style = "margin-top: 20px;" if (current_user and current_user.role === "admin")
+				%>
+				<%= select_tag :role, "<option value='user'>Choose Role</option><option value='user'>user</option><option value='editor'>editor</option><option value='admin'>admin</option>".html_safe, style: style, class:'form-control'%> 
+			</div>
+			<div class="modal-footer">
+				<div>
+					<%= submit_tag 'Register', class: "btn btn-primary btn-lg btn-block"%>
+				</div>
+				<div>
+					<a href="/log_in">Log In</a>
+				</div>
+			</div>
+		<% end %>
+  </div>
+</div>

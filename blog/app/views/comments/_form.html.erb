@@ -1,0 +1,13 @@
+<%= form_for(:comment, url: article_comments_path(@article.slug), method: :post) do |f| %>       
+  <div class="form-group" id="comment-textfield-area">
+    <%= f.text_area :body , class: "form-control input-lg", rows: 5, cols: 45, placeholder:"Write your reply here..." %>
+  </div>
+  <div class="form-group comment-form-author">
+    <%= f.text_field :commenter, placeholder:"Name*", class: "form-control input-lg" %>
+  </div>
+  <p class="form-submit">
+    <%= f.submit "Post Comment", class:"btn btn-default"%>
+  </p>
+<% end %>
+
+

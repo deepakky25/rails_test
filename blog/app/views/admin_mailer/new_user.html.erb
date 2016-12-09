@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+	<p>
+	 Name: <%= @user.name %><br>
+	  Username: <%= @user.username %><br>
+	  Role: <%= @user.role %> <br>
+	  Created At: <%= @user.created_at %> <br>
+	</p>
+	<p>
+      <%= link_to 'Delete User', "http://localhost:3000"+user_path(@user), style:'text-transform: none; margin-right: 10px;', 
+          method: :delete, 
+          data: { confirm: 'Are you sure?' } %>
+    </p>
+  </body>
+</html>

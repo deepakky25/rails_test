@@ -1,0 +1,31 @@
+<div style="text-align:center;">
+  <h2 align="center" class="bottom-title">Latest Articles</h2>
+</div>
+<div class="container" style="margin-top: 30px; margin-bottom:30px;">
+  <% @articles.each do |post| %>
+    <% cache_unless (current_user and (current_user.role == 'admin' or current_user.role == 'editor' )), post do %>
+      <article class="content-post">
+        <div class="content-body" style="height: 450px;">
+          <% if current_user and (current_user.role==='admin' or current_user.role==='editor') %>
+            <%= link_to "Edit", edit_article_path(post.slug), style:"padding: 5px 15px; background-color: #2980B9; color: #fff; float: left; text-decoration: none;" %>
+          <% end %>
+          <% if current_user and current_user.role==='admin' %>
+            <%= link_to "Delete", article_path(post.slug), style:"padding: 5px 15px; background-color: #2980B9; color: #fff; float: right; text-decoration: none;", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+          <a class="post-thumbnail" href="<%= article_path(post.slug) %>">
+            <img width="320" height="180" src="/assets/<%= post.picture %>" sizes="(max-width: 320px) 100vw, 320px">
+          </a>
+          <h2 class="content-title"><a href="<%= article_path(post.slug) %>"><%= post.title.capitalize %></h2>
+          <div class="content">
+            <p class="content-excerpt"><%= post.text.capitalize[0..350] %>...</p>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  <% end %>
+</div>
+
+
+  
+
+

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta content='text/html; charset=UTF-8' http-equiv='ontent-Type'/>
+  </head>
+  <body>
+    <p>
+      commenter: <%= @comment.commenter %>
+      comment: <br><%= @comment.body %> 
+    </p>
+    <div>
+      <%= link_to "Show Post", "http://localhost:3000"+article_path(@article.slug) %>
+    </div>
+  </body>
+</html>

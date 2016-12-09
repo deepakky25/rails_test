@@ -1,0 +1,33 @@
+<% cache_unless (current_user and (current_user.role == 'admin' or current_user.role == 'editor' )), comment do %>
+
+  <% if (not current_user and comment.spam.to_i == 0) or (current_user and ( comment.spam.to_i == 0 or current_user.role == 'admin' or current_user.role == 'editor' )) %>
+    <li class="comment">
+      <div id="div-comment-30" class="comment-body" style="margin-bottom: 40px; padding-left: 75px; position: relative;">
+        <div class="comment-head vcard" style="margin-bottom: 15px;">
+          <img alt="" src="https://secure.gravatar.com/avatar/a9025619d839651bb6e70754a81be999?s=50&amp;d=mm&amp;r=g" class="avatar avatar-50 photo" height="50" width="50" style=" border-radius: 500px; position: absolute; left: 0;">
+          <div class="comment-meta">
+            <span class="comment-name" style="font-size: 18px; font-weight: bold; line-height: 23px;"><%= comment.commenter %></span>
+            <div class="comment-date" style="float: right; font-size: 12px;">
+                <a href="https://nearfox.com/mumbai/adlabs-imagica/#comment-30" style="color: #777;"><% require 'date'%><%= DateTime.parse(comment.updated_at.to_s, '%Y-%m-%d %H:%M:%S').strftime('%B %d, %Y at %H:%M %P')%></a>
+            </div>
+          </div>
+        </div>
+        <div class="comment-text" style="margin-bottom: 15px;">
+          <p style="font-size: 17px; margin: 0;"><%= comment.body%></p>
+        </div>
+        <div class="comment-reply">
+          <% if current_user and (current_user.role == 'admin' or current_user.role == 'editor')%>
+            <%= #link_to "Edit", edit_article_comment_path(comment.article,comment), style:"text-transform: none; margin-right: 10px;"
+             %>
+            <a href="<%= spam_path(comment.article.slug, comment)%>" style="text-transform: none; margin-right: 10px;"><%= comment.spam.to_i == 0 ? "Spam" : "Not Spam" %></a>
+          <% end %>
+          <% if current_user and current_user.role == 'admin' %>
+            <%= link_to 'Delete', article_comment_path(comment.article.slug, comment), style:"text-transform: none; margin-right: 10px;",
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>

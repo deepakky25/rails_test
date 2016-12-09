@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true, :cache => 'cached/all'  %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, :cache => 'cached/all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% header = 'header1'
+   if current_user then header = "header2" end
+%>
+<% cache header do %>
+<header id="site-header" class="navbar navbar-default affix-top">
+  <div class="container-fluid">
+    <div class="navbar-inner row">
+      <div class="col-md-12">
+        <div class="pull-left navbar-header">
+          <a class="brand brand-logo" href="<%= articles_path %>" title="NearFox " rel="home">
+            <img class="img-responsive" src="/assets/bewakoof_logo.png" alt="Bewakoof Logo" style="height: 35px; margin-top: 10px; margin-bottom: 10px;">
+          </a>
+        </div>
+        <div class="pull-right">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Post Article?', new_article_path %></li>
+            <li><a>About Us</a></li>
+            <li><a>Contact Us</a></li>
+            <% if not current_user %>
+              <li><a href="/log_in">Log in</a></li>
+            <% else %>
+              <li><a href="/log_out">Logout</a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<% end %>
+<%= yield %>
+
+<footer id="site-footer">
+	<div class="container">
+		<p class="footurl" style="text-align: center;"><a href="/articles">Bewakoof</a></p>
+		<div class="row">
+			<div class="footnav" style="text-align: center;">
+				<ul id="menu-bottom-menu" class="footer-nav">
+					<li class="menu-item"><a title="About Us">About Us</a></li>
+					<li class="menu-item"><a title="Terms of Use">Terms of Use</a></li>
+				</ul>
+			</div> 
+		</div>
+	</div>
+</footer>
+</body>
+</html>
