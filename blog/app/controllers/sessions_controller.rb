@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to path, flash[:notice] => "Logged in!"
     else
-      render new_session_path, flash[:danger] = "Invalid email or password"
+      render new_session_path, flash[:danger] => "Invalid email or password"
     end
   end
 

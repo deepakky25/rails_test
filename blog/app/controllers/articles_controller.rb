@@ -13,6 +13,9 @@ class ArticlesController < ApplicationController
  
   def new
     @article = Article.new
+    1.times do
+      image = @article.images.build
+  end
   end
  
   def edit
@@ -21,9 +24,9 @@ class ArticlesController < ApplicationController
  
   def create
     image_prep()
-    @article.image_upload(params[:article][:image], params[:article][:picture])
-    @article = Article.new(params.require(:article).permit(:title, :text, :picture, :user_id, :slug, :imgname))
+    @article = Article.new(params.require(:article).permit(:title, :text, :user_id, :slug, images_attributes: [:id, :filename]))
     if @article.save
+      @article.image_upload(params[:article][:image])
       redirect_to article_path(@article.slug), flash: {success: "Post successfully posted."} 
     else 
       render new_article_path, flash: {danger: "Post submission failed!!!"} 
@@ -31,11 +34,10 @@ class ArticlesController < ApplicationController
   end
  
   def update
-    byebug
     @article = Article.find(params[:slug])
     image_prep()
-    @article.image_upload(params[:article][:image], params[:article][:picture]) if params[:article][:picture]
-    if @article.update(params.require(:article).permit(:title, :text, :picture, :user_id, :slug, :imgname))
+    if @article.update(params.require(:article).permit(:title, :text, :user_id, :slug, images_attributes: [:id, :filename]))
+      @article.image_upload(params[:article][:image])
       redirect_to article_path(@article.slug), flash: {success: "Post updated successfully."}
     else
       render edit_article_path(@article.slug), flash: {danger: "Post updation failed!!!"}
@@ -44,21 +46,13 @@ class ArticlesController < ApplicationController
  
   def destroy
     @article = Article.find_by(slug: params[:slug])
+    @article.comments.each {|comment| comment.destroy}
     @article.destroy
     redirect_to articles_path
   end
 
   def image_prep
-    byebug
-    params[:article][:image] = params[:article][:picture]
-    image_name = image_name(params[:article][:image] ? params[:article][:image].original_filename : nil)
-    params[:article][:imgname] = params[:article][:image] ? params[:article][:image].original_filename : nil 
-    params[:article][:picture] = image_name
-  end
-
-  def image_name(name)
-    byebug
-    time = Time.now.to_i
-    if name  then name = name.split('.')[0] + '_' + time.to_s + '.' +name.split('.')[1]  else nil end
+    params[:article][:image] = params[:article][:images_attributes]["0"][:filename]
+    params[:article][:images_attributes]["0"][:filename] = params[:article][:image] ? params[:article][:image].original_filename : nil
   end
 end

@@ -9,7 +9,7 @@ Rails.application.configure do
   #config.action_view.cache_template_loading = true
   config.action_controller.perform_caching = false
   
-  #config.reload_classes_only_on_change
+  config.reload_classes_only_on_change
 
   # Do not eager load code on boot.
   config.eager_load = false

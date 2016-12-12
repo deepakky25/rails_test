@@ -13,7 +13,7 @@
             <%= link_to "Delete", article_path(post.slug), style:"padding: 5px 15px; background-color: #2980B9; color: #fff; float: right; text-decoration: none;", method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
           <a class="post-thumbnail" href="<%= article_path(post.slug) %>">
-            <img width="320" height="180" src="/assets/<%= post.picture %>" sizes="(max-width: 320px) 100vw, 320px">
+            <img width="320" height="180" src="/assets/<%= post.images[0].filename %>" sizes="(max-width: 320px) 100vw, 320px">
           </a>
           <h2 class="content-title"><a href="<%= article_path(post.slug) %>"><%= post.title.capitalize %></h2>
           <div class="content">
@@ -24,8 +24,3 @@
     <% end %>
   <% end %>
 </div>
-
-
-  
-
-

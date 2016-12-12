@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209111514) do
+ActiveRecord::Schema.define(version: 20161209132906) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20161209111514) do
     t.string   "picture",    limit: 255
     t.integer  "user_id",    limit: 4
     t.string   "slug",       limit: 255
-    t.string   "imgname",    limit: 255
   end
 
   add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
@@ -37,6 +36,13 @@ ActiveRecord::Schema.define(version: 20161209111514) do
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
+
+  create_table "images", force: :cascade do |t|
+    t.string   "filename",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "article_id", limit: 4
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",       limit: 255

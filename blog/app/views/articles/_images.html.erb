@@ -1,0 +1,8 @@
+<div class="form-group image-selector">
+  <label for="exampleInputFile">Featured Image:</label>
+  <div>
+    <button type="button" class="btn btn-default" id="exampleInputFile" onclick="$('#fileSelector').click();" >Choose Image</button>
+    <p id="fileName"><% if @article.picture %> <%=@article.picture %> <% else %> No file chosen <% end %></p>
+  </div>
+  <%= f.file_field :filename, class: 'hidden', id: 'fileSelector' %>
+</div>
